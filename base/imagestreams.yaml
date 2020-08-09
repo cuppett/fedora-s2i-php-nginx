@@ -10,6 +10,8 @@ spec:
       from:
         kind: DockerImage
         name: 'registry.fedoraproject.org/f32/s2i-core:latest'
+      importPolicy:
+        scheduled: true
 ---
 kind: ImageStream
 apiVersion: image.openshift.io/v1
@@ -22,3 +24,5 @@ spec:
       from:
         kind: DockerImage
         name: 'quay.io/cuppett/fedora-php-s2i-base:32'
+      importPolicy:
+        scheduled: true
