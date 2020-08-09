@@ -22,6 +22,7 @@ RUN set -ex; \
     \
     dnf -y update; \
     dnf -y install \
+        bzip2 \
         php-cli \
         php-process \
         php-Smarty \
