@@ -49,7 +49,6 @@ RUN set -ex; \
     /usr/bin/php /usr/local/src/smarty/compile_templates.php ; \
     /usr/bin/php /usr/local/src/smarty/process_templates.php
 
-WORKDIR /var/www/html
 VOLUME /var/www/html
 
 USER 1001
