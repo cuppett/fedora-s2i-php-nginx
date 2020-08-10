@@ -18,6 +18,7 @@ spec:
   strategy:
     type: Docker
     dockerStrategy:
+      imageOptimizationPolicy: SkipLayers
       from:
         kind: ImageStreamTag
         namespace: fedora-php-s2i-builds
