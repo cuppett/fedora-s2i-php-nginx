@@ -24,6 +24,7 @@ RUN set -ex; \
     \
     dnf -y install \
         nginx \
+        httpd-filesystem \
     ; \
     \
 # reset dnf cache
@@ -42,12 +43,9 @@ ENV NGINX_DEFAULT_EXPIRES="modified +24h"
 RUN set -ex; \
     mkdir /run/nginx ; \
     mkdir -p /etc/nginx/{conf.d,default.d}; \
-    chown -R 1001:0 /etc/nginx; \
-    chown 1001:0 /run/nginx; \
-    chown -R 1001:0 /var/www; \
-    chmod -R g=u /etc/nginx; \
-    chmod g=u /run/nginx; \
-    chmod -R g=u /var/www; \
+    fix-permissions /etc/nginx; \
+    fix-permissions /run/nginx; \
+    fix-permissions /var/www; \
     /usr/bin/php /usr/local/src/smarty/compile_templates.php
 
 EXPOSE 8080

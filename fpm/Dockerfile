@@ -53,14 +53,9 @@ COPY s2i/bin/ $STI_SCRIPTS_PATH
 RUN set -ex; \
     mkdir /run/php-fpm; \
     mkdir -p /tmp/php/{session,wsdlcache}; \
-    chown -R 1001:0 /etc/php*; \
-    chown 1001:0 /run/php-fpm; \
-    chown 1001:0 /tmp/php/{session,wsdlcache}; \
-    chown -R 1001:0 /var/www; \
-    chmod -R g=u /etc/php*; \
-    chmod g=u /run/php-fpm; \
-    chmod g=u /tmp/php/{session,wsdlcache}; \
-    chmod -R g=u /var/www; \
+    fix-permissions /etc/php; \
+    fix-permissions /run/php-fpm; \
+    fix-permissions /tmp/php; \
     /usr/bin/php /usr/local/src/smarty/compile_templates.php
 
 # PHP-FPM defaults
