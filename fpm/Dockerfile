@@ -53,9 +53,11 @@ COPY s2i/bin/ $STI_SCRIPTS_PATH
 RUN set -ex; \
     mkdir /run/php-fpm; \
     mkdir -p /tmp/php/{session,wsdlcache}; \
-    fix-permissions /etc/php; \
+    chgrp -R 0 /etc/php* ; \
+    chmod g+w -R /etc/php* ; \
     fix-permissions /run/php-fpm; \
     fix-permissions /tmp/php; \
+    fix-permissions /var/www; \
     /usr/bin/php /usr/local/src/smarty/compile_templates.php
 
 # PHP-FPM defaults
