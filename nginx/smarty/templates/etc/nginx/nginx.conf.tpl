@@ -24,26 +24,6 @@ http {
     keepalive_timeout   65;
     types_hash_max_size 4096;
 
-    gzip on;
-    gzip_disable "msie6";
-
-    gzip_comp_level 6;
-    gzip_min_length 1100;
-    gzip_buffers 16 8k;
-    gzip_proxied any;
-    gzip_types
-        text/plain
-        text/css
-        text/js
-        text/xml
-        text/javascript
-        application/javascript
-        application/json
-        application/xml
-        application/rss+xml
-        image/svg+xml;
-
-
     include             /etc/nginx/mime.types;
     default_type        application/octet-stream;
 
@@ -53,11 +33,15 @@ http {
     include /etc/nginx/conf.d/*.conf;
 
     server {
+
         listen       {$smarty.env.NGINX_LISTEN_PORT};
         listen       [::]:{$smarty.env.NGINX_LISTEN_PORT};
         server_name  _;
         root  /var/www/html;
         index index.php index.html;
+
+        # Remove X-Powered-By, which is an information leak
+        fastcgi_hide_header X-Powered-By;
 
         location = /favicon.ico {
             log_not_found off;
@@ -68,10 +52,6 @@ http {
             allow all;
             log_not_found off;
             access_log off;
-        }
-
-        location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
-            expires {$smarty.env.NGINX_DEFAULT_EXPIRES};
         }
 
         # Load configuration files for the default server block.
