@@ -52,6 +52,8 @@ RUN set -ex; \
 
 EXPOSE 8080
 
+VOLUME /var/www/html
+
 USER 1001
 
 CMD ["nginx"]

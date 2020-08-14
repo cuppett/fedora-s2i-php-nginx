@@ -54,8 +54,6 @@ RUN set -ex; \
     /usr/bin/php /usr/local/src/smarty/compile_templates.php ; \
     /usr/bin/php /usr/local/src/smarty/process_templates.php
 
-VOLUME /var/www/html
-
 USER 1001
 
 ENTRYPOINT ["/usr/local/bin/php-entrypoint.sh"]

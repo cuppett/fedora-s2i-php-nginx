@@ -92,6 +92,8 @@ STOPSIGNAL SIGQUIT
 
 EXPOSE 9000
 
+VOLUME /var/www/html
+
 USER 1001
 
 CMD ["/usr/sbin/php-fpm"]
