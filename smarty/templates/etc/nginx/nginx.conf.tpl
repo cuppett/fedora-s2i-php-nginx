@@ -37,7 +37,7 @@ http {
         listen       {$smarty.env.NGINX_LISTEN_PORT};
         listen       [::]:{$smarty.env.NGINX_LISTEN_PORT};
         server_name  _;
-        root  /var/www/html;
+        root  {$smarty.env.DOCUMENT_ROOT};
         index index.php index.html;
 
         # Remove X-Powered-By, which is an information leak

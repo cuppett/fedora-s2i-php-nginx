@@ -1,4 +1,4 @@
-FROM quay.io/cuppett/fedora-php-s2i-base:32
+FROM quay.io/cuppett/fedora-s2i-php-base:32
 
 ENV SUMMARY="NGINX image which allows using of source-to-image, PHP commands and Smarty templates."	\
     DESCRIPTION="The nginx image provides any images layered on top of it \
@@ -33,6 +33,7 @@ RUN set -ex; \
 
 COPY smarty /usr/local/src/smarty
 
+ENV DOCUMENT_ROOT="/var/www/html"
 ENV FCGI_HOST="127.0.0.1:9000"
 ENV NGINX_WORKER_PROCESSES="auto"
 ENV NGINX_WORKER_CONNECTIONS="1024"
