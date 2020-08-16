@@ -17,11 +17,12 @@ http {
 
     access_log   /proc/self/fd/1 main;
 
-    sendfile            on;
-    tcp_nopush          on;
-    tcp_nodelay         on;
-    keepalive_timeout   65;
-    types_hash_max_size 4096;
+    sendfile             on;
+    tcp_nopush           on;
+    tcp_nodelay          on;
+    keepalive_timeout    65;
+    types_hash_max_size  4096;
+    client_max_body_size {$smarty.env.NGINX_CLIENT_MAX_BODY_SIZE};
 
     include             /etc/nginx/mime.types;
     default_type        application/octet-stream;
