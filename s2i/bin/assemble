@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+echo "---> Installing application source"
+cp -Rf /tmp/src/. ./
+
+# Fix source directory permissions
+fix-permissions ./
+
+if [ -d ./smarty ]; then
+  echo "---> Copying nginx configuration templates..."
+  cp -Rf ./smarty/. /usr/local/src/smarty/
+  /usr/bin/php /usr/local/src/smarty/compile_templates.php
+fi

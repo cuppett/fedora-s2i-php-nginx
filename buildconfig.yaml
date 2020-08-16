@@ -1,15 +1,15 @@
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
-  name: fedora-php-s2i-nginx-build
-  namespace: fedora-php-s2i-builds
+  name: fedora-s2i-php-nginx-build
+  namespace: fedora-s2i-php-builds
   labels:
-    name: fedora-php-s2i-nginx-build
+    name: fedora-s2i-php-nginx-build
 spec:
   output:
     to:
       kind: DockerImage
-      name: 'quay.io/cuppett/fedora-php-s2i-nginx:32'
+      name: 'quay.io/cuppett/fedora-s2i-php-nginx:latest'
     pushSecret:
       name: quayio
   resources: {}
@@ -21,13 +21,13 @@ spec:
       imageOptimizationPolicy: SkipLayers
       from:
         kind: ImageStreamTag
-        namespace: fedora-php-s2i-builds
-        name: 'fedora-php-s2i-base:32'
+        namespace: fedora-s2i-php-builds
+        name: 'fedora-s2i-php-base:latest'
   postCommit: {}
   source:
     type: Git
     git:
-      uri: 'https://github.com/cuppett/fedora-php-s2i'
+      uri: 'https://github.com/cuppett/fedora-s2i-php-nginx'
     contextDir: nginx
   triggers:
     - type: ImageChange

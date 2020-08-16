@@ -1,6 +1,5 @@
 {* Smarty *}
 worker_processes {$smarty.env.NGINX_WORKER_PROCESSES};
-daemon off;
 error_log /proc/self/fd/2 info;
 pid /run/nginx/nginx.pid;
 
@@ -39,20 +38,6 @@ http {
         server_name  _;
         root  {$smarty.env.DOCUMENT_ROOT};
         index index.php index.html;
-
-        # Remove X-Powered-By, which is an information leak
-        fastcgi_hide_header X-Powered-By;
-
-        location = /favicon.ico {
-            log_not_found off;
-            access_log off;
-        }
-
-        location = /robots.txt {
-            allow all;
-            log_not_found off;
-            access_log off;
-        }
 
         # Load configuration files for the default server block.
         include /etc/nginx/default.d/*.conf;
