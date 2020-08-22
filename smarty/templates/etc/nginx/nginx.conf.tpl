@@ -37,7 +37,7 @@ http {
         listen       {$smarty.env.NGINX_LISTEN_PORT};
         listen       [::]:{$smarty.env.NGINX_LISTEN_PORT};
         server_name  _;
-        root  {$smarty.env.DOCUMENT_ROOT};
+        root  /var/www/html{$smarty.env.DOCUMENTROOT};
         index index.php index.html;
 
         # Load configuration files for the default server block.

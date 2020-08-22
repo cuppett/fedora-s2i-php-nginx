@@ -35,7 +35,7 @@ COPY smarty /usr/local/src/smarty
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY s2i/bin/ $STI_SCRIPTS_PATH
 
-ENV DOCUMENT_ROOT="/var/www/html"
+ENV DOCUMENTROOT=""
 ENV FCGI_HOST="127.0.0.1:9000"
 ENV NGINX_WORKER_PROCESSES="auto"
 ENV NGINX_WORKER_CONNECTIONS="1024"
