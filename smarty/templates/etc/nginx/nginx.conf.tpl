@@ -21,6 +21,8 @@ http {
     tcp_nopush           on;
     tcp_nodelay          on;
     keepalive_timeout    65;
+    fastcgi_read_timeout {$smarty.env.NGINX_FASTCGI_READ_TIMEOUT};
+    proxy_read_timeout   {$smarty.env.NGINX_FASTCGI_READ_TIMEOUT};
     types_hash_max_size  4096;
     client_max_body_size {$smarty.env.NGINX_CLIENT_MAX_BODY_SIZE};
 
