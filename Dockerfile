@@ -4,8 +4,7 @@ ENV SUMMARY="NGINX image which allows using of source-to-image, PHP commands and
     DESCRIPTION="The nginx image provides any images layered on top of it \
 with all the tools needed to use NGINX and/or source-to-image functionality while keeping \
 the image size as small as possible." \
-    NAME=fedora-nginx \
-    VERSION=32
+    NAME=fedora-nginx
 
 LABEL summary="$SUMMARY" \
       description="$DESCRIPTION" \
