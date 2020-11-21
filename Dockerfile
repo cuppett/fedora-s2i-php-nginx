@@ -44,10 +44,13 @@ COPY s2i/bin/ $STI_SCRIPTS_PATH
 # set permissions up on the runtime locations
 RUN set -ex; \
     mkdir /run/nginx ; \
-    mkdir -p /etc/nginx/{conf.d,default.d}; \
-    fix-permissions /etc/nginx; \
     fix-permissions /run/nginx; \
     fix-permissions /var/www; \
+    mkdir -p /etc/nginx/{conf.d,default.d}; \
+    chgrp -R 0 /etc/nginx/* ; \
+    chmod g+w -R /etc/nginx/* ; \
+    chgrp -R 0 /usr/local/src/* ; \
+    chmod g+w -R /usr/local/src/* ; \
     /usr/bin/php /usr/local/src/smarty/compile_templates.php
 
 EXPOSE 8080
