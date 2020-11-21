@@ -4,7 +4,14 @@ ENV SUMMARY="NGINX image which allows using of source-to-image, PHP commands and
     DESCRIPTION="The nginx image provides any images layered on top of it \
 with all the tools needed to use NGINX and/or source-to-image functionality while keeping \
 the image size as small as possible." \
-    NAME=fedora-nginx
+    NAME=fedora-nginx \
+    DOCUMENTROOT="" \
+    FCGI_HOST="127.0.0.1:9000" \
+    NGINX_FASTCGI_READ_TIMEOUT="60" \
+    NGINX_WORKER_PROCESSES="auto" \
+    NGINX_WORKER_CONNECTIONS="1024" \
+    NGINX_LISTEN_PORT="8080" \
+    NGINX_CLIENT_MAX_BODY_SIZE="32m"
 
 LABEL summary="$SUMMARY" \
       description="$DESCRIPTION" \
@@ -33,14 +40,6 @@ RUN set -ex; \
 COPY smarty /usr/local/src/smarty
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY s2i/bin/ $STI_SCRIPTS_PATH
-
-ENV DOCUMENTROOT=""
-ENV FCGI_HOST="127.0.0.1:9000"
-ENV NGINX_FASTCGI_READ_TIMEOUT="60"
-ENV NGINX_WORKER_PROCESSES="auto"
-ENV NGINX_WORKER_CONNECTIONS="1024"
-ENV NGINX_LISTEN_PORT="8080"
-ENV NGINX_CLIENT_MAX_BODY_SIZE="32m"
 
 # set permissions up on the runtime locations
 RUN set -ex; \
