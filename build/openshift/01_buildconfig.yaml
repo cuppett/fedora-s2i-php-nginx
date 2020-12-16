@@ -30,4 +30,8 @@ spec:
     - type: ImageChange
       imageChange: {}
     - type: ConfigChange
+    - type: GitHub
+      github:
+        secretReference:
+          name: github-trigger
   runPolicy: Serial
