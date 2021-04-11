@@ -21,6 +21,7 @@ http {
     tcp_nopush           on;
     tcp_nodelay          on;
     keepalive_timeout    65;
+    proxy_set_header     X-Forwarded-For $proxy_add_x_forwarded_for;
     fastcgi_read_timeout {$smarty.env.NGINX_FASTCGI_READ_TIMEOUT};
     proxy_read_timeout   {$smarty.env.NGINX_FASTCGI_READ_TIMEOUT};
     types_hash_max_size  4096;
