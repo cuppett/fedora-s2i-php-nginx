@@ -11,6 +11,7 @@ the image size as small as possible." \
     NGINX_WORKER_PROCESSES="auto" \
     NGINX_WORKER_CONNECTIONS="1024" \
     NGINX_LISTEN_PORT="8080" \
+    NGINX_LISTEN_SSL_PORT="8443" \
     NGINX_CLIENT_MAX_BODY_SIZE="32m"
 
 LABEL summary="$SUMMARY" \
@@ -30,6 +31,7 @@ RUN set -ex; \
     \
     dnf -y install \
         nginx \
+        openssl \
         httpd-filesystem \
     ; \
     \
@@ -45,14 +47,16 @@ RUN set -ex; \
     mkdir /run/nginx ; \
     fix-permissions /run/nginx; \
     fix-permissions /var/www; \
-    mkdir -p /etc/nginx/{conf.d,default.d}; \
+    mkdir -p /etc/nginx/{conf.d,default.d,certs}; \
     chgrp -R 0 /etc/nginx/* ; \
     chmod g+w -R /etc/nginx/* ; \
     chgrp -R 0 /usr/local/src/* ; \
     chmod g+w -R /usr/local/src/* ; \
-    /usr/bin/php /usr/local/src/smarty/compile_templates.php
+    /usr/bin/php /usr/local/src/smarty/compile_templates.php ; \
+    openssl dhparam -out /etc/nginx/dhparam.pem 4096
 
 EXPOSE 8080
+EXPOSE 8443
 
 VOLUME /var/www/html
 
