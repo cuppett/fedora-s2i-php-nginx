@@ -53,7 +53,7 @@ RUN set -ex; \
     chgrp -R 0 /usr/local/src/* ; \
     chmod g+w -R /usr/local/src/* ; \
     /usr/bin/php /usr/local/src/smarty/compile_templates.php ; \
-    openssl dhparam -out /etc/nginx/dhparam.pem 4096
+    openssl dhparam -out /etc/nginx/dhparam.pem 2048
 
 EXPOSE 8080
 EXPOSE 8443
