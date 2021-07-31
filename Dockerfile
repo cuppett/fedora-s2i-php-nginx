@@ -47,6 +47,7 @@ RUN set -ex; \
     mkdir /run/nginx ; \
     fix-permissions /run/nginx; \
     fix-permissions /var/www; \
+    fix-permissions /var/log/nginx; \
     mkdir -p /etc/nginx/{conf.d,default.d,certs}; \
     chgrp -R 0 /etc/nginx/* ; \
     chmod g+w -R /etc/nginx/* ; \
