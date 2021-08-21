@@ -41,7 +41,7 @@ http {
         listen       [::]:{$smarty.env.NGINX_LISTEN_PORT};
         server_name  {if isset($smarty.env.SERVER_NAME) }{$smarty.env.SERVER_NAME}{else}_{/if};
         root  /var/www/html{$smarty.env.DOCUMENTROOT};
-        index index.php index.html;
+        index index.php index.html /index.php$request_uri;
 
         # Load configuration files for the default server block.
         include /etc/nginx/default.d/*.conf;
@@ -63,7 +63,7 @@ http {
         ssl_dhparam /etc/nginx/dhparam.pem;
 
         root  /var/www/html{$smarty.env.DOCUMENTROOT};
-        index index.php index.html;
+        index index.php index.html /index.php$request_uri;
 
         # Load configuration files for the default server block.
         include /etc/nginx/default.d/*.conf;
