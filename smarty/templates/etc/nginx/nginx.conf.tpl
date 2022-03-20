@@ -46,6 +46,15 @@ http {
         # Load configuration files for the default server block.
         include /etc/nginx/default.d/*.conf;
 
+        location = /stub_status {
+            stub_status;
+            allow          127.0.0.1;
+            allow          10.0.0.0/8;
+            allow          172.16.0.0/12;
+            allow          192.168.0.0/16;
+            deny           all;
+            access_log off;
+        }
     }
 
     {if file_exists('/etc/nginx/certs/tls.crt') && file_exists('/etc/nginx/certs/tls.key')}
