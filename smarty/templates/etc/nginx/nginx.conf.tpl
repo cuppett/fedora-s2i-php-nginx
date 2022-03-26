@@ -59,8 +59,8 @@ http {
 
     {if file_exists('/etc/nginx/certs/tls.crt') && file_exists('/etc/nginx/certs/tls.key')}
     server {
-        listen              {$smarty.env.NGINX_LISTEN_SSL_PORT} ssl;
-        listen              [::]:{$smarty.env.NGINX_LISTEN_SSL_PORT} ssl;
+        listen              {$smarty.env.NGINX_LISTEN_SSL_PORT} ssl http2;
+        listen              [::]:{$smarty.env.NGINX_LISTEN_SSL_PORT} ssl http2;
         server_name         {if isset($smarty.env.SERVER_NAME) }{$smarty.env.SERVER_NAME}{else}_{/if};
         ssl_certificate     /etc/nginx/certs/tls.crt;
         ssl_certificate_key /etc/nginx/certs/tls.key;
