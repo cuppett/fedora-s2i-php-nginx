@@ -45,15 +45,13 @@ COPY s2i/bin/ $STI_SCRIPTS_PATH
 # set permissions up on the runtime locations
 RUN set -ex; \
     mkdir /run/nginx ; \
+    chmod a+w /var/log/nginx; \
+    mkdir -p /etc/nginx/{conf.d,default.d,certs}; \
     fix-permissions /run/nginx; \
     fix-permissions /var/www; \
     fix-permissions /var/log/nginx; \
-    chmod a+w /var/log/nginx; \
-    mkdir -p /etc/nginx/{conf.d,default.d,certs}; \
-    chgrp -R 0 /etc/nginx/* ; \
-    chmod g+w -R /etc/nginx/* ; \
-    chgrp -R 0 /usr/local/src/* ; \
-    chmod g+w -R /usr/local/src/* ; \
+    fix-permissions /etc/nginx; \
+    fix-permissions /usr/local/src; \
     /usr/bin/php /usr/local/src/smarty/compile_templates.php ; \
     openssl dhparam -out /etc/nginx/dhparam.pem 2048
 
