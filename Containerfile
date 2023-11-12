@@ -1,4 +1,4 @@
-FROM quay.io/cuppett/fedora-s2i-php:37-base
+FROM ghcr.io/cuppett/fedora-s2i-php-base:39
 
 ENV SUMMARY="NGINX image which allows using of source-to-image, PHP commands and Smarty templates."	\
     DESCRIPTION="The nginx image provides any images layered on top of it \
@@ -22,7 +22,8 @@ LABEL summary="$SUMMARY" \
       name="$FGC/$NAME" \
       version="$VERSION" \
       usage="This image is supposed to be used as a base image for other images that support PHP or source-to-image" \
-      maintainer="Stephen Cuppett <steve@cuppett.com>"
+      maintainer="Stephen Cuppett <steve@cuppett.com>" \
+      org.opencontainers.image.source="https://github.com/cuppett/fedora-s2i-php-nginx"
 
 USER 0
 
