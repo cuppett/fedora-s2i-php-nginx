@@ -17,6 +17,9 @@ http {
 
     absolute_redirect off;
     access_log        /proc/self/fd/1 main;
+    {if isset($smarty.env.NGINX_RESOLVER) }
+    resolver {$smarty.env.NGINX_RESOLVER} valid=10s;
+    {/if}
 
     sendfile             on;
     tcp_nopush           on;
